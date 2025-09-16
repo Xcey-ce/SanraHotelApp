@@ -2,13 +2,13 @@
 
 @section('title', 'Dashboard')
 
-@section('page-title', 'Dashboard')
+@section('page-title', 'Hotel property management system')
 
 @section('content')
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-    <div class=" text-white bg-orange-400 rounded-lg shadow p-6 transform transition duration-500 hover:scale-105">
-      <h2 class="text-lg">Dashboard Overview</h2>
-      <p class="text-2xl font-bold">Data and Statistics</p>
+    <div class=" text-white bg-orange-400 rounded-lg shadow p-6">
+      <p class="text-2xl font-bold">Dashboard Overview</p>
+      <h2 class="text-lg">Data and Statistics</h2>
     </div>
 </div>
 

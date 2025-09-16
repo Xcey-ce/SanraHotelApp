@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Sanra Hotel')</title>
-     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -20,34 +20,43 @@
             <!-- Navigation -->
             <nav class="flex-1 px-4">
                 <ul class="space-y-2">
-                    <li>
+                   <li>
                         <a href="{{ route('dashboard') }}"
-                           class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">
-                           Dashboard
+                           class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
+                           <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                           <span>Dashboard</span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="{{route('rooms')}}"
-                           class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">
-                           Rooms
+                        <a href="{{ route('rooms') }}"
+                           class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
+                           <i data-lucide="bed" class="w-5 h-5"></i>
+                           <span>Rooms</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">
-                           Reservations
-                        </a>
-                    </li>
+
                     <li>
                         <a href="#"
-                           class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">
-                           Guests
+                           class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
+                           <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                           <span>Reservations</span>
                         </a>
                     </li>
+
                     <li>
                         <a href="#"
-                           class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">
-                           Reports
+                           class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
+                           <i data-lucide="users" class="w-5 h-5"></i>
+                           <span>Guests</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#"
+                           class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
+                           <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                           <span>Reports</span>
                         </a>
                     </li>
                 </ul>
@@ -68,10 +77,10 @@
             <!-- Navbar -->
             <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
                 <h1 class="text-2xl font-bold text-orange-600">
-                    @yield('page-title', 'Dashboard')
+                    @yield('page-title', 'Hotel property management system')
                 </h1>
 
-                 <h2 class="text-lg">@section('title', 'Rooms')</h2>
+                <h2 class="text-lg">@section('title', 'Rooms')</h2>
 
                 <div class="flex items-center space-x-4">
                     <span class="text-gray-700">Admin</span>
@@ -88,6 +97,10 @@
 
         </div>
     </div>
-
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    @stack('scripts')
 </body>
 </html>
