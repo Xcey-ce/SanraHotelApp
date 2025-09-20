@@ -25,3 +25,6 @@ Route::get('/rooms', function () {
     return view('layouts.rooms');
 })->name('rooms');
 
+Route::get('/reservation', function () {
+    return view('layouts.reservation');
+})->name('reservation');

@@ -11,7 +11,7 @@
   <div class="flex h-screen">
     <!-- Sidebar -->
     <aside class="w-64 bg-orange-600 text-white flex flex-col">
-      <div class="p-6 text-2xl font-bold">Sanra Hotel</div>
+      <div class="p-6 text-2xl font-bold">PSU - San Rafael Hospitality Management Hostel PMS</div>
       <nav class="flex-1 px-4">
         <ul class="space-y-2">
           <li><a href="#" class="block py-2 px-3 rounded hover:bg-orange-500 transition-colors">Dashboard</a></li>
