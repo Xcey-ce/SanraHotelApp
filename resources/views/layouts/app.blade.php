@@ -37,7 +37,7 @@
                     </li>
 
                     <li>
-                        <a href="#"
+                        <a href="{{ route('reservation') }}"
                            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
                            <span>Reservations</span>
