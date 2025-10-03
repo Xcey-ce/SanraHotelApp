@@ -11,8 +11,8 @@
       <p class="text-2xl font-bold">ROOMS</p>
       <h2 class="text-lg">Available Rooms</h2>
     </div>
-    <button onclick="openRoomModal()" 
-      class="flex items-center gap-2 bg-white text-orange-500 px-4 py-2 rounded-lg shadow hover:bg-orange-100">
+      <button onclick="roomDialog()" 
+          class="flex items-center gap-2 bg-white text-orange-500 px-4 py-2 rounded-lg shadow hover:bg-orange-100">
       <i data-lucide="plus" class="w-5 h-5"></i>
       <span>Add Room</span>
     </button>
@@ -104,109 +104,16 @@
   </div>
 </div>
 
-<!-- ADD ROOM MODAL -->
-<div id="addRoomModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-  <div class="bg-white rounded-lg shadow-lg w-full max-w-5xl p-6 relative">
-    <h2 class="text-2xl font-semibold mb-4 text-orange-600">Add Room</h2>
-
-    <form id="addRoomForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      
-      <!-- Room Number -->
-      <div>
-        <label class="block font-medium">Room Number</label>
-        <input type="text" name="room_number" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-      </div>
-
-      <!-- Room Name -->
-      <div>
-        <label class="block font-medium">Room Name</label>
-        <input type="text" name="room_name" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-      </div>
-
-      <!-- Room Type -->
-      <div>
-        <label class="block font-medium">Room Type</label>
-        <select name="room_type" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-          <option value="">-- Select Type --</option>
-          <option value="deluxe">Deluxe</option>
-          <option value="executive">Executive</option>
-          <option value="presidential">Presidential</option>
-        </select>
-      </div>
-
-      <!-- Capacity -->
-      <div>
-        <label class="block font-medium">Capacity</label>
-        <input type="number" name="capacity" min="1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-      </div>
-
-      <!-- Price -->
-      <div>
-        <label class="block font-medium">Price per Night (₱)</label>
-        <input type="number" name="price" min="0" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-      </div>
-
-      <!-- Status -->
-      <div>
-        <label class="block font-medium">Status</label>
-        <select name="status" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-          <option value="available" selected>Available</option>
-          <option value="occupied">Occupied</option>
-          <option value="maintenance">Under Maintenance</option>
-        </select>
-      </div>
-
-      <!-- Upload Image -->
-      <div>
-        <label class="block font-medium">Upload Image</label>
-        <input type="file" accept="image/*" onchange="previewRoomImage(event)" class="w-full">
-        <img id="roomImagePreview" class="mt-2 rounded-lg shadow hidden w-full h-40 object-cover" />
-      </div>
-
-      <!-- Amenities (text input instead of checkboxes) -->
-      <div>
-        <label class="block font-medium">Amenities</label>
-        <input type="text" name="amenities" placeholder="e.g. Wi-Fi, TV, Aircon" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
-      </div>
-
-      <!-- Description -->
-      <div class="md:col-span-2">
-        <label class="block font-medium">Description</label>
-        <textarea name="description" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500"></textarea>
-      </div>
-
-      <!-- Buttons -->
-      <div class="md:col-span-2 flex justify-end gap-2 mt-4">
-        <button type="button" onclick="closeRoomModal()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-        <button type="submit" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-500">Save</button>
-      </div>
-    </form>
-
-    <button onclick="closeRoomModal()" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
-  </div>
-</div>
-
-
 <script>
-  function openRoomModal() {
-    document.getElementById('addRoomModal').classList.remove('hidden');
+  function roomDialog() {
+    document.getElementById("roomDialog").showModal();
   }
 
-  function closeRoomModal() {
-    document.getElementById('addRoomModal').classList.add('hidden');
-    document.getElementById('addRoomForm').reset();
-    document.getElementById('roomImagePreview').classList.add('hidden');
-  }
-
-  function previewRoomImage(event) {
-    const reader = new FileReader();
-    reader.onload = function(){
-      const output = document.getElementById('roomImagePreview');
-      output.src = reader.result;
-      output.classList.remove('hidden');
-    }
-    reader.readAsDataURL(event.target.files[0]);
-  }
+  // Close button handler
+  document.querySelector('[command="close"][commandfor="roomDialog"]')
+    .addEventListener("click", function() {
+      document.getElementById("roomDialog").close();
+    });
 
   // Dummy submit handler
   document.getElementById('addRoomForm').addEventListener('submit', function(e){
@@ -249,18 +156,19 @@
   <el-dialog-backdrop class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
 
   <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
-    <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+    <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all sm:my-8 sm:w-full sm:max-w-5xl data-closed:sm:translate-y-0 data-closed:sm:scale-95">
       
       <!-- Header -->
       <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
-        <h3 id="room-title" class="text-lg font-semibold text-white">Add New Room</h3>
+        <h3 id="room-title" class="text-xl font-semibold text-white">Add New Room</h3>
         <p class="text-sm text-white">Fill out the details to add a new room to the hotel.</p>
       </div>
 
       <!-- Form -->
       <form method="POST" action="" class="bg-gray-800 px-6 pt-4 pb-6">
         @csrf
-        <div class="space-y-4">
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <!-- Room Number -->
           <div>
             <label for="room_number" class="block text-sm font-medium text-gray-300">Room Number</label>
