@@ -65,18 +65,37 @@
     </div>
 
     <!-- Presidential Suite -->
-    <div class="room-card presidential bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
-      <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/01/22/1544/Park-Hyatt-New-York-P499-Presidential-Suite-Living-Room.jpg" alt="Presidential Suite" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-800">Presidential Suite</h3>
-        <p class="text-gray-600 mt-2">Ultimate luxury suite with private jacuzzi, office space, and 24/7 butler service.</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-lg font-bold text-orange-600">₱5000 / night</span>
-          <a href="#" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition">Book Now</a>
+   <!-- Alpine.js CDN (add once in your layout) -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<div class="room-card presidential bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300 relative" x-data="{ open: false }">
+  <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/01/22/1544/Park-Hyatt-New-York-P499-Presidential-Suite-Living-Room.jpg" 
+       alt="Presidential Suite" class="w-full h-48 object-cover">
+
+  <!-- 3 dots button -->
+  <div class="absolute top-3 right-3">
+    <button @click="open = !open" class="p-2 rounded-full hover:bg-gray-200 focus:outline-none">
+      ⋮
+    </button>
+
+    <!-- Popover (hidden until clicked) -->
+      <div x-show="open" 
+          @click.away="open = false" 
+          x-transition 
+          class="absolute right-0 mt-2 w-32 bg-white border rounded-lg shadow-lg py-2 z-50">
+          <a href="#edit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+          <a href="#delete" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
         </div>
-      </div>
     </div>
 
+    <div class="p-6">
+      <h3 class="text-xl font-semibold text-gray-800">Presidential Suite</h3>
+      <p class="text-gray-600 mt-2">Ultimate luxury suite with private jacuzzi, office space, and 24/7 butler service.</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-lg font-bold text-orange-600">₱5000 / night</span>
+        <a href="#" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition">Book Now</a>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
