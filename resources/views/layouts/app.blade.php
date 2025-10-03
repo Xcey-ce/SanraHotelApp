@@ -95,12 +95,17 @@
                 @yield('content')
             </main>
 
+
         </div>
     </div>
+
+    @stack('scripts')
+    <el-dialog>
+        @yield('add-modal')
+    </el-dialog>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
     </script>
-    @stack('scripts')
 </body>
 </html>
