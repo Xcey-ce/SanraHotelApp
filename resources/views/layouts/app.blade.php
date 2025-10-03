@@ -14,7 +14,7 @@
         <aside class="w-64 bg-orange-600 text-white flex flex-col">
             <!-- Logo / Title -->
             <div class="p-6 text-2xl font-bold">
-                Sanra Hotel
+                PSU San Rafael
             </div>
 
             <!-- Navigation -->
@@ -45,7 +45,7 @@
                     </li>
 
                     <li>
-                        <a href="#"
+                        <a href="{{ route('guest') }}"
                            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
                            <i data-lucide="users" class="w-5 h-5"></i>
                            <span>Guests</span>
@@ -77,7 +77,7 @@
             <!-- Navbar -->
             <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
                 <h1 class="text-2xl font-bold text-orange-600">
-                    @yield('page-title', 'Hotel property management system')
+                    @yield('page-title', 'Hospitality Management Hostel PMS')
                 </h1>
 
                 <h2 class="text-lg">@section('title', 'Rooms')</h2>
