@@ -19,14 +19,19 @@
   </div>
 </div>
 
-<!-- Category Buttons + Search -->
+<!-- Category Buttons -->
 <div class="mt-8">
   <div class="flex flex-wrap gap-3 mb-6 items-center">
     <button onclick="filterRooms('all')" class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-500">All</button>
+    <button onclick="filterRooms('standard')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Standard</button>
     <button onclick="filterRooms('deluxe')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Deluxe</button>
+    <button onclick="filterRooms('premier-deluxe')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-o  range-500 hover:text-white">Premier Deluxe</button>
+    <button onclick="filterRooms('family')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Family</button>
+    <button onclick="filterRooms('premier-family')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-o  range-500 hover:text-white">Premier Family</button>
     <button onclick="filterRooms('executive')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Executive</button>
-    <button onclick="filterRooms('presidential')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Presidential</button>
+    <button onclick="filterRooms('presidential-suite')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-o  range-500 hover:text-white">Presidential Suite</button>
 
+  <!-- Search -->
     <div class="flex ml-auto">
       <input type="text" id="roomSearch" placeholder="Search rooms..." 
              class="px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
@@ -101,10 +106,17 @@
 
 <!-- ADD ROOM MODAL -->
 <div id="addRoomModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-  <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-5xl p-6 relative">
     <h2 class="text-2xl font-semibold mb-4 text-orange-600">Add Room</h2>
 
-    <form id="addRoomForm" class="space-y-3">
+    <form id="addRoomForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <!-- Room Number -->
+      <div>
+        <label class="block font-medium">Room Number</label>
+        <input type="text" name="room_number" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
+      </div>
+
       <!-- Room Name -->
       <div>
         <label class="block font-medium">Room Name</label>
@@ -122,16 +134,26 @@
         </select>
       </div>
 
+      <!-- Capacity -->
+      <div>
+        <label class="block font-medium">Capacity</label>
+        <input type="number" name="capacity" min="1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
+      </div>
+
       <!-- Price -->
       <div>
         <label class="block font-medium">Price per Night (₱)</label>
         <input type="number" name="price" min="0" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
       </div>
 
-      <!-- Description -->
+      <!-- Status -->
       <div>
-        <label class="block font-medium">Description</label>
-        <textarea name="description" rows="2" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500"></textarea>
+        <label class="block font-medium">Status</label>
+        <select name="status" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
+          <option value="available" selected>Available</option>
+          <option value="occupied">Occupied</option>
+          <option value="maintenance">Under Maintenance</option>
+        </select>
       </div>
 
       <!-- Upload Image -->
@@ -141,21 +163,20 @@
         <img id="roomImagePreview" class="mt-2 rounded-lg shadow hidden w-full h-40 object-cover" />
       </div>
 
-      <!-- Amenities -->
+      <!-- Amenities (text input instead of checkboxes) -->
       <div>
-        <label class="block font-medium mb-1">Amenities</label>
-        <div class="grid grid-cols-2 gap-2 text-sm">
-          <label><input type="checkbox" name="amenities[]" value="Wi-Fi" class="mr-1"> Wi-Fi</label>
-          <label><input type="checkbox" name="amenities[]" value="TV" class="mr-1"> TV</label>
-          <label><input type="checkbox" name="amenities[]" value="Aircon" class="mr-1"> Aircon</label>
-          <label><input type="checkbox" name="amenities[]" value="Balcony" class="mr-1"> Balcony</label>
-          <label><input type="checkbox" name="amenities[]" value="Mini Bar" class="mr-1"> Mini Bar</label>
-          <label><input type="checkbox" name="amenities[]" value="Hot Shower" class="mr-1"> Hot Shower</label>
-        </div>
+        <label class="block font-medium">Amenities</label>
+        <input type="text" name="amenities" placeholder="e.g. Wi-Fi, TV, Aircon" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500">
+      </div>
+
+      <!-- Description -->
+      <div class="md:col-span-2">
+        <label class="block font-medium">Description</label>
+        <textarea name="description" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-orange-500"></textarea>
       </div>
 
       <!-- Buttons -->
-      <div class="flex justify-end gap-2 mt-4">
+      <div class="md:col-span-2 flex justify-end gap-2 mt-4">
         <button type="button" onclick="closeRoomModal()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
         <button type="submit" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-500">Save</button>
       </div>
@@ -164,6 +185,7 @@
     <button onclick="closeRoomModal()" class="absolute top-2 right-2 text-gray-500 hover:text-black">&times;</button>
   </div>
 </div>
+
 
 <script>
   function openRoomModal() {
