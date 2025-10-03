@@ -220,3 +220,88 @@
 </script>
 
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+@endpush
+
+@section('add-modal')
+<dialog id="roomDialog" aria-labelledby="room-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+  <el-dialog-backdrop class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+
+  <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+    <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      
+      <!-- Header -->
+      <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
+        <h3 id="room-title" class="text-lg font-semibold text-white">Add New Room</h3>
+        <p class="text-sm text-white">Fill out the details to add a new room to the hotel.</p>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" action="" class="bg-gray-800 px-6 pt-4 pb-6">
+        @csrf
+        <div class="space-y-4">
+          <!-- Room Number -->
+          <div>
+            <label for="room_number" class="block text-sm font-medium text-gray-300">Room Number</label>
+            <input type="text" name="room_number" id="room_number" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Type -->
+          <div>
+            <label for="room_type" class="block text-sm font-medium text-gray-300">Room Type</label>
+            <select name="room_type" id="room_type" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Select type</option>
+              <option value="single">Single</option>
+              <option value="double">Double</option>
+              <option value="suite">Suite</option>
+              <option value="deluxe">Deluxe</option>
+            </select>
+          </div>
+
+          <!-- Capacity -->
+          <div>
+            <label for="capacity" class="block text-sm font-medium text-gray-300">Capacity</label>
+            <input type="number" name="capacity" id="capacity" min="1" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Price Per Night -->
+          <div>
+            <label for="price" class="block text-sm font-medium text-gray-300">Price Per Night</label>
+            <input type="number" step="0.01" name="price" id="price" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Status -->
+          <div>
+            <label for="status" class="block text-sm font-medium text-gray-300">Status</label>
+            <select name="status" id="status" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="available">Available</option>
+              <option value="occupied">Occupied</option>
+              <option value="maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
+          <button type="button" command="close" commandfor="roomDialog"
+            class="inline-flex justify-center rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">
+            Cancel
+          </button>
+          <button type="submit"
+            class="inline-flex justify-center rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500">
+            Save Room
+          </button>
+        </div>
+      </form>
+    </el-dialog-panel>
+  </div>
+</dialog>
+@endsection
+
