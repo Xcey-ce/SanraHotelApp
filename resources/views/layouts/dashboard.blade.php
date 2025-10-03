@@ -2,7 +2,7 @@
 
 @section('title', 'Dashboard')
 
-@section('page-title', 'Hotel property management system')
+@section('page-title', 'Hospitality Management Hostel PMS')
 
 @section('content')
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">

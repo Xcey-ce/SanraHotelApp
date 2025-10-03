@@ -28,3 +28,7 @@ Route::get('/rooms', function () {
 Route::get('/reservation', function () {
     return view('layouts.reservation');
 })->name('reservation');
+
+Route::get('/guest', function () {
+    return view('layouts.guest');
+})->name('guest');
