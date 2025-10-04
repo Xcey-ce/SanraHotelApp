@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTables;
 
 class RoomController extends Controller
 {
-    public function roomIndex(){
+    public function roomIndex(Request $request){
 
         if ($request->ajax()) {
             $rooms = Room::select(['id','roomnumber','roomname','type','capacity','price','status']);
