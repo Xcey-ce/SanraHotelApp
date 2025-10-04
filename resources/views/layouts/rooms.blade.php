@@ -72,7 +72,7 @@
     <!-- Presidential Suite -->
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <div class="room-card presidential bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300 relative" x-data="{ open: false }">
-      <img src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/01/22/1544/Park-Hyatt-New-York-P499-Presidential-Suite-Living-Room.jpg" 
+      <img src="https://www.elyseehotel.com/_novaimg/4302260-1340553_0_201_2500_1362_2200_1200.rc.jpg" 
           alt="Presidential Suite" class="w-full h-48 object-cover">
 
       <!-- 3 dots button -->
