@@ -72,11 +72,7 @@
     <!-- Presidential Suite -->
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <div class="room-card presidential bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300 relative" x-data="{ open: false }">
-<<<<<<< HEAD
-      <img src="https://www.manila-hotel.com.ph/wp-content/uploads/2020/06/Pres-Suite-1-DSC_1906-scaled.jpg" 
-=======
       <img src="https://www.elyseehotel.com/_novaimg/4302260-1340553_0_201_2500_1362_2200_1200.rc.jpg" 
->>>>>>> origin/main
           alt="Presidential Suite" class="w-full h-48 object-cover">
 
       <!-- 3 dots button -->
@@ -203,34 +199,6 @@
               class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
               placeholder="Enter room amenities here..."></textarea>
           </div>
-<<<<<<< HEAD
-        </div>
-
-        <!-- Image Upload -->
-        <div class="w-full">
-          <label for="imagePath" class="block text-sm font-medium text-gray-300">Image</label>
-
-          <input 
-            type="file" 
-            name="image_path" 
-            id="imagePath" 
-            accept="image/*"
-            class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-
-          <!-- Preview container -->
-          <div id="previewContainer" class="relative mt-3 hidden">
-            <img id="imagePreview" src="" alt="Preview" 
-                class="w-full max-h-64 object-contain rounded-md border border-gray-600">
-
-            <!-- X Button -->
-            <button type="button" id="removeImageBtn"
-                    class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-700 focus:outline-none">
-              ✕
-            </button>
-          </div>
-=======
->>>>>>> origin/main
         </div>
 
         <!-- Image Upload -->
