@@ -98,11 +98,10 @@
 
         </div>
     </div>
-
-    @stack('scripts')
     <el-dialog>
-        @yield('add-modal')
+     @yield('add-modal')
     </el-dialog>
+    @stack('scripts')
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
