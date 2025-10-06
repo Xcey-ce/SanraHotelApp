@@ -123,6 +123,7 @@ function openEditRoomDialog(id, number, name, type, capacity, price, status, des
   document.getElementById('editStatus').value = status;
   document.getElementById('editDescription').value = description;
   document.getElementById('editAmenities').value = amenities;
+  document.getElementById('roomNumber').textContent = number;
 
   // ✅ Show old image preview
   const editPreviewImg = document.getElementById('editImagePreview');

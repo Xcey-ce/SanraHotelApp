@@ -150,7 +150,7 @@
       
       <!-- Header -->
       <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
-        <h3 id="room-title" class="text-xl font-semibold text-white">Edit Room {{$room->roomnumber}}</h3>
+        <h3 id="room-title" class="text-xl font-semibold text-white">Edit Room <span id="roomNumber"></span></h3>
         <p class="text-sm text-white">Fill out the details to add a new room to the hotel.</p>
       </div>
 
