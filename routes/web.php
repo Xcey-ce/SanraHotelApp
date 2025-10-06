@@ -21,9 +21,6 @@ Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 })->name('dashboard');
 
-Route::get('/rooms', function () {
-    return view('layouts.rooms');
-})->name('rooms');
 
 Route::get('/reservation', function () {
     return view('layouts.reservation');
@@ -32,3 +29,9 @@ Route::get('/reservation', function () {
 Route::get('/guest', function () {
     return view('layouts.guest');
 })->name('guest');
+
+Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'roomIndex'])->name('rooms.index');
+Route::post('/rooms/store', [App\Http\Controllers\RoomController::class, 'storeRoom'])->name('rooms.store');
+Route::put('/rooms/update/{id}', [App\Http\Controllers\RoomController::class, 'updateRoom'])->name('rooms.update');
+Route::delete('/rooms/delete/{id}', [App\Http\Controllers\RoomController::class, 'deleteRoom'])->name('rooms.delete');
+
