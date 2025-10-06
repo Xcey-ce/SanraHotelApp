@@ -15,8 +15,8 @@ class Room extends Model
     [ 
         'roomnumber', 
         'roomname', 
-        'type', '
-        capacity', 
+        'type',
+        'capacity', 
         'price', 
         'status', 
         'image_path', 
@@ -27,7 +27,7 @@ class Room extends Model
      [ 
         'price' => 'decimal:2', 
         'capacity' => 'integer', ]; 
-        
+         
      public function scopeAvailable($query) 
          { 
             return $query->where('status', 'available'); 

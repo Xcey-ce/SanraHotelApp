@@ -7,6 +7,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 font-sans">
+<div id="alertContainer" class="fixed top-5 right-5 z-50 space-y-2"></div>
+
 
     <div class="flex h-screen">
 
@@ -29,7 +31,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('rooms') }}"
+                        <a href="{{ route('rooms.index') }}"
                            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-orange-500 transition-colors">
                            <i data-lucide="bed" class="w-5 h-5"></i>
                            <span>Rooms</span>
@@ -98,11 +100,24 @@
 
         </div>
     </div>
-
-    @stack('scripts')
     <el-dialog>
-        @yield('add-modal')
+     @yield('add-modal')
     </el-dialog>
+    @stack('scripts')
+    <script>
+    window.alertData = {
+        @if(session('success'))
+            success: "{{ session('success') }}",
+        @endif
+        @if(session('error'))
+            error: "{{ session('error') }}",
+        @endif
+        @if(session('info'))
+            info: "{{ session('info') }}",
+        @endif
+    };
+    </script>
+    <script src="{{ asset('assets/js/alert.js')}}?v={{ time() }}"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();

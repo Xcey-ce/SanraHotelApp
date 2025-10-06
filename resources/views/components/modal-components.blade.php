@@ -1,0 +1,318 @@
+<dialog id="roomDialog"  aria-labelledby="room-title" 
+  class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+
+  <el-dialog-backdrop 
+    class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in">
+  </el-dialog-backdrop>
+
+  <div tabindex="0" 
+    class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+    
+    <el-dialog-panel 
+      class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all sm:my-8 sm:w-full sm:max-w-5xl data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      
+      <!-- Header -->
+      <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
+        <h3 id="room-title" class="text-xl font-semibold text-white">Add New Room</h3>
+        <p class="text-sm text-white">Fill out the details to add a new room to the hotel.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="addRoomForm" method="POST" action="{{ route('rooms.store') }}" enctype="multipart/form-data" class="bg-gray-800 px-6 pt-4 pb-6">
+        @csrf
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-4">
+          <!-- Room Number -->
+          <div>
+            <label for="room_number" class="block text-sm font-medium text-gray-300">Room Number</label>
+            <input type="text" name="roomnumber" id="room_number" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Name -->
+          <div>
+            <label for="room_name" class="block text-sm font-medium text-gray-300">Room Name</label>
+            <input type="text" name="roomname" id="room_name" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Type -->
+          <div>
+            <label for="type" class="block text-sm font-medium text-gray-300">Room Type</label>
+            <select name="type" id="type" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="" disabled selected>-- Select Room Type --</option>
+                <option value="standard">Standard</option>
+                <option value="deluxe">Deluxe</option>
+                <option value="premier-deluxe">Premiere Deluxe</option>
+                <option value="family">Family</option>
+                <option value="premier-family">Premiere Family</option>
+                <option value="executive">Executive</option>
+                <option value="presidential-suite">Presidential Suite</option>
+            </select>
+          </div>
+
+          <!-- Capacity -->
+          <div>
+            <label for="capacity" class="block text-sm font-medium text-gray-300">Capacity</label>
+            <input type="number" name="capacity" id="capacity" min="1" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Price Per Night -->
+          <div>
+            <label for="price" class="block text-sm font-medium text-gray-300">Price Per Night</label>
+            <input type="number" step="0.01" name="price" id="price" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Status -->
+          <div>
+            <label for="status" class="block text-sm font-medium text-gray-300">Status</label>
+            <select name="status" id="status" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="available">Available</option>
+              <option value="occupied">Occupied</option>
+              <option value="maintenance">Maintenance</option>
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="description" class="block text-sm font-medium text-gray-300">Room Description</label>
+            <textarea name="description" id="description" rows="2" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              placeholder="Enter room description here..."></textarea>
+          </div>
+
+          <!-- Amenities -->
+          <div>
+            <label for="amenities" class="block text-sm font-medium text-gray-300">Room Amenities</label>
+            <textarea name="amenities" id="amenities" rows="2" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              placeholder="Enter room amenities here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="w-full">
+          <label for="imagePath" class="block text-sm font-medium text-gray-300">Image</label>
+
+          <input 
+            type="file" 
+            name="image_path" 
+            id="imagePath" 
+            accept="image/*"
+            class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+
+          <!-- Preview container -->
+          <div id="previewContainer" class="relative mt-3 hidden">
+            <img id="imagePreview" src="" alt="Preview" 
+                class="w-full max-h-64 object-contain rounded-md border border-gray-600">
+
+            <!-- X Button -->
+            <button type="button" id="removeImageBtn"
+                    class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-700 focus:outline-none">
+              ✕
+            </button>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
+          <button type="button" command="close" commandfor="roomDialog"
+            class="inline-flex justify-center rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">
+            Cancel
+          </button>
+          <button type="submit"
+            class="inline-flex justify-center rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">
+            Save Room
+          </button>
+        </div>
+      </form>
+    </el-dialog-panel>
+  </div>
+</dialog>
+
+<!-- Edit Modal -->
+<dialog id="editRoomDialog"  aria-labelledby="room-title"
+  class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+
+  <el-dialog-backdrop 
+    class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in">
+  </el-dialog-backdrop>
+
+  <div tabindex="0" 
+    class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+    
+    <el-dialog-panel 
+      class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all sm:my-8 sm:w-full sm:max-w-5xl data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      
+      <!-- Header -->
+      <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
+        <h3 id="room-title" class="text-xl font-semibold text-white">Edit Room {{$room->roomnumber}}</h3>
+        <p class="text-sm text-white">Fill out the details to add a new room to the hotel.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="editRoomForm" method="POST" action="{{ route('rooms.update',  $room->id) }}" enctype="multipart/form-data" class="bg-gray-800 px-6 pt-4 pb-6">
+        @csrf
+        @method('PUT')
+         <input type="hidden" name="id" id="id">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-4">
+          
+          <!-- Room Number -->
+          <div>
+            <label for="editRoomNumber" class="block text-sm font-medium text-gray-300">Room Number</label>
+            <input type="text" name="roomnumber" id="editRoomNumber" value="{{$room->roomnumber}}" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Name -->
+          <div>
+            <label for="editRoomName" class="block text-sm font-medium text-gray-300">Room Name</label>
+            <input type="text" name="roomname" id="editRoomName" value="{{$room->roomname}}" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Type -->
+          <div>
+            <label for="editType" class="block text-sm font-medium text-gray-300">Room Type</label>
+            <select name="type" id="editType" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="" disabled selected>-- Select Room Type --</option>
+                <option value="standard">Standard</option>
+                <option value="deluxe">Deluxe</option>
+                <option value="premier-deluxe">Premiere Deluxe</option>
+                <option value="family">Family</option>
+                <option value="premier-family">Premiere Family</option>
+                <option value="executive">Executive</option>
+                <option value="presidential-suite">Presidential Suite</option>
+            </select>
+          </div>
+
+          <!-- Capacity -->
+          <div>
+            <label for="editCapacity" class="block text-sm font-medium text-gray-300">Capacity</label>
+            <input type="number" name="capacity" id="editCapacity" min="1" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Price Per Night -->
+          <div>
+            <label for="editPrice" class="block text-sm font-medium text-gray-300">Price Per Night</label>
+            <input type="number" step="0.01" name="price" id="editPrice" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Status -->
+          <div>
+            <label for="editStatus" class="block text-sm font-medium text-gray-300">Status</label>
+            <select name="status" id="editStatus" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="available">Available</option>
+              <option value="occupied">Occupied</option>
+              <option value="maintenance">Maintenance</option>
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="editDescription" class="block text-sm font-medium text-gray-300">Room Description</label>
+            <textarea name="description" id="editDescription" rows="2" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              placeholder="Enter room description here..."></textarea>
+          </div>
+
+          <!-- Amenities -->
+          <div>
+            <label for="editAmenities" class="block text-sm font-medium text-gray-300">Room Amenities</label>
+            <textarea name="amenities" id="editAmenities" rows="2" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+              placeholder="Enter room amenities here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Image Upload -->
+            <div class="w-full">
+              <label for="editImagePath" class="block text-sm font-medium text-gray-300">Image</label>
+
+              <input 
+                type="file" 
+                name="image_path" 
+                id="editImagePath" 
+                accept="image/*"
+                class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+
+              <!-- Preview container -->
+              <div id="editPreviewContainer" class="relative mt-3">
+               <img id="editImagePreview" src="" alt="Preview"
+                 class="w-full max-h-64 object-contain rounded-md border border-gray-600 hidden">
+                <!-- X Button -->
+                <button type="button" id="removeImageBtn"
+                        class="absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-700 focus:outline-none">
+                  ✕
+                </button>
+              </div>
+            </div>
+
+        <!-- Footer -->
+        <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
+          <button type="button" command="close" commandfor="editRoomDialog"
+            class="inline-flex justify-center rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">
+            Cancel
+          </button>
+          <button type="submit"
+            class="inline-flex justify-center rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">
+            Save Room
+          </button>
+        </div>
+      </form>
+    </el-dialog-panel>
+  </div>
+</dialog>
+
+
+<!-- Danger Modal -->
+<!-- Delete Form -->
+<form method="POST" id="deleteRoomForm">
+  @csrf
+  @method('DELETE')
+  <!-- Modal Wrapper -->
+  <div id="deleteRoomDialog" class="fixed inset-0 hidden items-center justify-center z-50">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+    <!-- Modal Content -->
+    <div class="relative bg-white rounded-lg shadow-lg max-w-sm w-full p-6 z-10">
+      <div class="flex items-center">
+        <div class="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 mr-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h2 class="text-lg font-semibold text-gray-800">
+          Delete Room <span id="deleteRoomName">?</span>
+        </h2>
+      </div>
+
+      <p class="mt-3 text-sm text-gray-600">
+        Are you sure you want to delete this item? This action cannot be undone.
+      </p>
+
+      <div class="mt-6 flex justify-end space-x-3">
+        <button type="button" onclick="closeDangerModal()"
+          class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-800">
+          Cancel
+        </button>
+        <button type="submit"
+          class="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
