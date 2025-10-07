@@ -75,24 +75,28 @@ public function getGuestsData()
       }
   }
 
-  public function updateGuest(Request $request, $id)
-  {
-      try {
-          $guest = Guest::findOrFail($id);
-          $guest->name = $request->name ;
-          $guest->email = $request->email ?? '';
-          $guest->phone = $request->phone ?? '';
-          $guest->id_type = $request->id_type;
-          $guest->id_number = $request->id_number;
-          $guest->address = $request->address ?? '';
+ public function updateGuest(Request $request, $id)
+{
+    try {
+        $guest = Guest::findOrFail($id);
+        $guest->name = $request->name;
+        $guest->email = $request->email ?? '';
+        $guest->phone = $request->phone ?? '';
+        $guest->id_type = $request->id_type;
+        $guest->id_number = $request->id_number;
+        $guest->address = $request->address ?? '';
+        $guest->save();
 
-          $guest->save();
-          return redirect()->back()->with('success', 'Guest updated successfully.');    
-
-          } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Failed to update guest: ' . $e->getMessage());
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Guest updated successfully.'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to update guest: ' . $e->getMessage()
+        ], 500);
     }
-
 }
 
 public function deleteGuest($id)
@@ -100,10 +104,19 @@ public function deleteGuest($id)
     try {
         $guest = Guest::findOrFail($id);
         $guest->delete();
-        return redirect()->back()->with('success', 'Guest deleted successfully.');
-    } catch (Exception $e) {
-        Log::error('Failed to delete guest: ' . $e->getMessage());
-        return redirect()->back()->with('error', 'Failed to delete guest.');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Guest deleted successfully.'
+        ]);
+    } catch (\Exception $e) {
+        \Log::error('Failed to delete guest: ' . $e->getMessage());
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to delete guest.'
+        ]);
     }
-  }
+}
+
 }
