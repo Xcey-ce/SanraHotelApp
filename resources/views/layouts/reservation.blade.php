@@ -73,9 +73,6 @@
             class="w-full border rounded p-2 focus:ring-orange-400"></textarea>
 </div>
 
-      
-      
-
       <div class="flex justify-end">
         <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
           Save Reservation
@@ -102,67 +99,6 @@
           <th class="px-6 py-3 text-left font-medium">Actions</th>
         </tr>
       </thead>
-      <tbody class="divide-y text-gray-700">
-        <!-- Example row -->
-        <tr class="hover:bg-orange-50">
-          <td class="px-6 py-4">Mark Ompad</td>
-          <td class="px-6 py-4">0163</td>
-          <td class="px-6 py-4">Sept 16, 2025</td>
-          <td class="px-6 py-4">Sept 17, 2025</td>
-          <td class="px-6 py-4">
-            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Paid</span>
-          </td>
-          <td class="px-6 py-4 flex gap-2">
-            <!-- Replace # with your route, e.g. route('reservation.update', $id) -->
-            <form action="#" method="POST">
-              @csrf
-              <button class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600">Check-in</button>
-            </form>
-            <form action="#" method="POST">
-              @csrf
-              <button class="bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-600">Check-out</button>
-            </form>
-            <form action="#" method="POST">
-              @csrf
-              <button class="bg-red-500 text-white px-3 py-1 rounded text-xs hover:bg-red-600">Cancel</button>
-            </form>
-          </td>
-        </tr>
-
-        <!-- Repeat for other reservations -->
-        <tr class="hover:bg-orange-50">
-          <td class="px-6 py-4">Anna Cruz</td>
-          <td class="px-6 py-4">0241</td>
-          <td class="px-6 py-4">Sept 20, 2025</td>
-          <td class="px-6 py-4">Sept 22, 2025</td>
-          <td class="px-6 py-4">
-            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-700">Pending</span>
-          </td>
-          <td class="px-6 py-4 flex gap-2">
-            <form action="#" method="POST">
-              @csrf
-              <button class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600">Check-in</button>
-            </form>
-            <form action="#" method="POST">
-              @csrf
-              <button class="bg-red-500 text-white px-3 py-1 rounded text-xs hover:bg-red-600">Cancel</button>
-            </form>
-          </td>
-        </tr>
-
-        <tr class="hover:bg-orange-50">
-          <td class="px-6 py-4">John Reyes</td>
-          <td class="px-6 py-4">0310</td>
-          <td class="px-6 py-4">Sept 25, 2025</td>
-          <td class="px-6 py-4">Sept 28, 2025</td>
-          <td class="px-6 py-4">
-            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">Cancelled</span>
-          </td>
-          <td class="px-6 py-4 text-gray-400 text-xs italic">
-            No actions available
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>
