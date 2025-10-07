@@ -26,12 +26,16 @@ Route::get('/reservation', function () {
     return view('layouts.reservation');
 })->name('reservation');
 
-Route::get('/guest', function () {
-    return view('layouts.guest');
-})->name('guest');
+
 
 Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'roomIndex'])->name('rooms.index');
 Route::post('/rooms/store', [App\Http\Controllers\RoomController::class, 'storeRoom'])->name('rooms.store');
 Route::put('/rooms/update/{id}', [App\Http\Controllers\RoomController::class, 'updateRoom'])->name('rooms.update');
 Route::delete('/rooms/delete/{id}', [App\Http\Controllers\RoomController::class, 'deleteRoom'])->name('rooms.delete');
+
+Route::get('/guests', [App\Http\Controllers\GuestController::class, 'index'])->name('guests.index');
+Route::get('/guests/data', [App\Http\Controllers\GuestController::class, 'getGuestsData'])->name('guests.data');
+Route::post('/store/guest', [App\Http\Controllers\GuestController::class, 'storeGuest'])->name('store.guest');
+Route::put('/update/guest/{id}', [App\Http\Controllers\GuestController::class, 'updateGuest'])->name('update.guest');
+Route::delete('/delete/guest/{id}', [App\Http\Controllers\GuestController::class, 'deleteGuest'])->name('delete.guest');
 

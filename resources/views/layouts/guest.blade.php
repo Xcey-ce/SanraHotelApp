@@ -11,62 +11,56 @@
       <p class="text-2xl font-bold">GUESTS</p>
       <h2 class="text-lg">Guests Management</h2>
     </div>
+      <button onclick="addGuestDialog()" 
+      class="flex items-center gap-2 bg-white text-orange-500 px-4 py-2 rounded-lg shadow hover:bg-orange-100">
+      <i data-lucide="plus" class="w-5 h-5"></i>
+      <span>Add Guest</span>
+    </button>
   </div>
 </div>
 
 <!-- Guest List Section -->
 <div class="mt-8">
   <!-- Filters + Search -->
-  <div class="flex flex-wrap gap-3 mb-6 items-center">
-    <button onclick="filterGuests('all')" class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-500">All</button>
-    <button onclick="filterGuests('checkedin')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Checked-in</button>
-    <button onclick="filterGuests('checkedout')" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-orange-500 hover:text-white">Checked-out</button>
-
-    <div class="flex ml-auto">
-      <input type="text" id="guestSearch" placeholder="Search guests..." 
-             class="px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-      <button onclick="searchGuests()" 
-          class="px-4 py-2 bg-orange-600 text-white rounded-r-lg hover:bg-orange-500">Search</button>
-    </div>
+  
+ <div class="bg-white rounded-lg shadow overflow-hidden mt-6 p-2">
+  <div class="flex justify-between items-center border-b pb-2 mb-4">
+    <h2 class="text-lg font-semibold text-gray-800">Guests Table</h2>
   </div>
-
-  <!-- Guests Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-    <!-- Guest Card -->
-    <div class="guest-card checkedin bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-800">Che Matillano</h3>
-        <p class="text-gray-600 mt-2">Room 0163 • 2 Nights</p>
-        <p class="text-sm text-gray-500">Check-in: Sept 16, 2025</p>
-        <p class="text-sm text-gray-500">Check-out: Sept 18, 2025</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Checked-in</span>
-          <div class="flex gap-2">
-            <a href="#" class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 text-sm">View</a>
-            <a href="#" class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-500 text-sm">Checkout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Another Guest -->
-    <div class="guest-card checkedout bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
-      <div class="p-6">
-        <h3 class="text-xl font-semibold text-gray-800">Anna Cruz</h3>
-        <p class="text-gray-600 mt-2">Room 0241 • 1 Night</p>
-        <p class="text-sm text-gray-500">Check-in: Sept 18, 2025</p>
-        <p class="text-sm text-gray-500">Check-out: Sept 19, 2025</p>
-        <div class="flex justify-between items-center mt-4">
-          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-200 text-gray-700">Checked-out</span>
-          <div class="flex gap-2">
-            <a href="#" class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 text-sm">View</a>
-            <a href="#" class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-500 text-sm">Delete</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="overflow-x-auto">
+    <table id="guestTable" class="border-collapse text-sm mx-auto w-auto min-w-[600px] border border-gray-300 divide-y divide-gray-200">
+      <thead class="bg-orange-100 text-orange-700">
+        <tr>
+          <th class="px-6 py-3 text-left font-medium">Id</th>
+          <th class="px-6 py-3 text-left font-medium">Name</th>
+          <th class="px-6 py-3 text-left font-medium">Email</th>
+          <th class="px-6 py-3 text-left font-medium">Phone</th>
+          <th class="px-6 py-3 text-left font-medium">ID Type</th>
+          <th class="px-6 py-3 text-left font-medium">ID Number</th>
+          <th class="px-6 py-3 text-left font-medium">Address</th>
+          <th class="px-6 py-3 text-left font-medium">Actions</th>
+        </tr>
+      </thead>
+    </table>
   </div>
 </div>
+
+</div>
 @endsection
+
+@section('add-modal')
+@include('components.modal-components')
+@endsection
+
+
+@push('scripts')
+<script src="{{ asset('assets/js/jquery-3.6.0.min.js')}}?v={{ time() }}"></script>
+<script src="{{ asset('assets/js/jquery.dataTables.min.js')}}?v={{ time() }}"></script>
+<script src="{{ asset('assets/js/guest.js')}}?v={{ time() }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+<script src="{{asset('assets/js/alpine.js')}}?v={{ time() }}" defer></script>
+<script src="{{asset('assets/js/sweetAlert.js')}}?v={{ time() }}"></script>
+@endpush
+
+

@@ -180,19 +180,17 @@
     @endforeach
   </div>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
+<script src="{{asset('assets/js/alpine.js')}}?v={{ time() }}" defer></script>
 @endsection
+
+
 @section('add-modal')
 @include('components.modal-components')
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+<script src="{{ asset('asset/js/tailwindplus.js')}}?v={{ time() }}" type="module"></script>
 <script src="{{ asset('assets/js/room.js')}}?v={{ time() }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('assets/js/sweetAlert.js')}}?v={{ time() }}"></script>
 @endpush
 
