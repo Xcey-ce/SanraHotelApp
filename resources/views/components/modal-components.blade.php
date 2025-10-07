@@ -478,12 +478,10 @@
 <form method="POST" id="deleteGuestForm">
   @csrf
   @method('DELETE')
-  <!-- Modal Wrapper -->
+
   <div id="deleteGuestDialog" class="fixed inset-0 hidden items-center justify-center z-50">
-    <!-- Overlay -->
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
 
-    <!-- Modal Content -->
     <div class="relative bg-white rounded-lg shadow-lg max-w-sm w-full p-6 z-10">
       <div class="flex items-center">
         <div class="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 mr-3">
@@ -493,7 +491,7 @@
               d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-       <h2 class="text-lg font-semibold text-gray-800">
+        <h2 class="text-lg font-semibold text-gray-800">
           Delete Guest <span id="deleteGuestName" class="font-semibold text-red-600 ml-1"></span>?
         </h2>
       </div>
