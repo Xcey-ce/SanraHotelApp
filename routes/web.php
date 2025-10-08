@@ -26,9 +26,7 @@ Route::get('/reservation', function () {
     return view('layouts.reservation');
 })->name('reservation');
 
-Route::get('/login', function () {
-    return view('layouts.login');
-})->name('login');
+
 
 Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'roomIndex'])->name('rooms.index');
 Route::post('/rooms/store', [App\Http\Controllers\RoomController::class, 'storeRoom'])->name('rooms.store');
