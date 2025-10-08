@@ -78,7 +78,6 @@ class RoomController extends Controller
         return redirect()->back()->with('error', 'Failed to update room.');
     }
 }
-
 public function deleteRoom($id)
 {
     try {
