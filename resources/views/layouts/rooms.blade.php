@@ -53,7 +53,6 @@
   </div>
 
   <!-- Rooms Grid -->
-  <!-- ✅ Force 3 cards per row, equal height -->
   <div class="grid grid-cols-3 gap-6 items-stretch">
 
     @foreach($rooms as $room)
@@ -112,10 +111,9 @@
           <h3 
             class="text-xl font-bold text-orange-600 cursor-pointer hover:text-orange-600 transition"
             @click="showModal = true">
-            {{ $room->roomnumber }} - {{ $room->roomname }} 
-          </h3>
+            {{ $room->id }} - {{ $room->roomname }} ({{ $room->roomnumber }})
+           </h3>
           <p class="text-gray-600 mt-1">Capacity: {{ $room->capacity }} persons</p>
-          <p class="text-gray-600 mt-1">Amenities: {{ $room->amenities }}</p>
           <p class="text-gray-600 mt-1">Type: {{ $room->type }}</p>
 
           <p class="text-xl mt-5 font-bold text-orange-600">
@@ -131,7 +129,7 @@
           <div class="flex justify-between items-center mt-3">
             <span class="text-lg font-bold text-orange-600">₱{{ $room->price }} / night</span>
             @if($room->status === 'available')
-              <a href="#" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition">Reserve</a>
+              <button onclick="document.getElementById('reservationDialog').showModal()" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-500 transition">Reserve</button>
             @endif
           </div>
         </div>
