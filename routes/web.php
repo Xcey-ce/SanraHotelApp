@@ -26,7 +26,9 @@ Route::get('/reservation', function () {
     return view('layouts.reservation');
 })->name('reservation');
 
-
+Route::get('/login', function () {
+    return view('layouts.login');
+})->name('login');
 
 Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'roomIndex'])->name('rooms.index');
 Route::post('/rooms/store', [App\Http\Controllers\RoomController::class, 'storeRoom'])->name('rooms.store');
@@ -38,4 +40,3 @@ Route::get('/guests/data', [App\Http\Controllers\GuestController::class, 'getGue
 Route::post('/store/guest', [App\Http\Controllers\GuestController::class, 'storeGuest'])->name('store.guest');
 Route::put('/update/guest/{id}', [App\Http\Controllers\GuestController::class, 'updateGuest'])->name('update.guest');
 Route::delete('/delete/guest/{id}', [App\Http\Controllers\GuestController::class, 'deleteGuest'])->name('delete.guest');
-

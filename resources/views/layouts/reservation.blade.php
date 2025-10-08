@@ -21,7 +21,7 @@
 </div>
 
 <!-- Reservation Modal -->
-<div id="addReservationModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+<div id="addReservationModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden">
   <div class="bg-white w-full max-w-xl rounded-lg shadow-lg p-6 relative">
     <!-- Close Button -->
     <button onclick="document.getElementById('addReservationModal').classList.add('hidden')" 
@@ -161,7 +161,7 @@
           </div>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer -->++
         <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
           <button type="button" command="close" commandfor="reservationDialog"
             class="inline-flex justify-center rounded-md bg-white/10 px-4 py-1 text-sm font-semibold text-white hover:bg-white/20">
