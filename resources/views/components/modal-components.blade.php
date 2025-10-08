@@ -81,7 +81,7 @@
           <!-- Description -->
           <div>
             <label for="description" class="block text-sm font-medium text-gray-300">Room Description</label>
-            <textarea name="description" id="description" rows="2" required
+            <textarea name="description" id="description" rows="2"
               class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
               placeholder="Enter room description here..."></textarea>
           </div>
@@ -89,7 +89,7 @@
           <!-- Amenities -->
           <div>
             <label for="amenities" class="block text-sm font-medium text-gray-300">Room Amenities</label>
-            <textarea name="amenities" id="amenities" rows="2" required
+            <textarea name="amenities" id="amenities" rows="2" 
               class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
               placeholder="Enter room amenities here..."></textarea>
           </div>
@@ -277,7 +277,6 @@
 </dialog>
 
 
-<!-- Danger Modal -->
 <!-- Delete Form -->
 <form method="POST" id="deleteRoomForm">
   @csrf
@@ -774,11 +773,11 @@
       <!-- Header -->
       <div class="bg-orange-600 rounded-t-md px-5 pt-3 pb-3 border-b border-gray-700">
         <h3 id="guest-title" class="text-2xl font-semibold text-white">Edit Guest</h3>
-        <p class="text-sm text-white mt-1">Fill out the details to add a new guest to the hotel.</p>
+        <p class="text-sm text-white mt-1">Fill out the details to edit guest of the hotel.</p>
       </div>
 
       <!-- Form -->
-      <form id="editGuestForm" method="POST" action="{{route('store.guest')}}" class="px-10 pt-6 pb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <form id="editGuestForm" method="POST"  class="px-10 pt-6 pb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" id="editGuestId">
@@ -872,3 +871,231 @@
     </div>
   </div>
 </form>
+
+<!-- Reservation Modal -->
+<dialog id="reservationDialog" aria-labelledby="reservation-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+  <el-dialog-backdrop class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+
+  <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+    <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-3xl data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      
+      <!-- Header -->
+      <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
+        <h3 id="reservation-title" class="text-lg font-semibold text-white">Add Reservation</h3>
+        <p class="text-sm text-white">Fill out the form below to add a new reservation.</p>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" action="{{route('store.reservation')}}" class="bg-gray-800 px-6 pt-4 pb-6">
+        @csrf
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Guest ID -->
+          <div>
+            <label for="guest_id" class="block text-sm font-medium text-gray-300">Guest ID</label>
+            <input type="number" name="guest_id" id="guest_id" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Guest Name -->
+          <div>
+            <label for="guest_name" class="block text-sm font-medium text-gray-300">Guest Name</label>
+            <input type="text" id="guest_name" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room ID -->
+          <div>
+            <label for="room_id" class="block text-sm font-medium text-gray-300">Room ID</label>
+            <input type="number" name="room_id" id="room_id" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Number -->
+          <div>
+            <label for="roomnumber" class="block text-sm font-medium text-gray-300">Room Number</label>
+            <input type="text"  id="roomnumber" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Check In Date -->
+          <div>
+            <label for="check_in_date" class="block text-sm font-medium text-gray-300">Check In Date</label>
+            <input type="datetime-local" name="check_in_date" id="check_in_date" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Check Out Date -->
+          <div>
+            <label for="check_out_date" class="block text-sm font-medium text-gray-300">Check Out Date</label>
+            <input type="datetime-local" name="check_out_date" id="check_out_date" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Total Amount -->
+          <div>
+            <label for="total_amount" class="block text-sm font-medium text-gray-300">Total Amount</label>
+            <input type="number" name="total_amount" id="total_amount" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Deposit Amount -->
+          <div>
+            <label for="deposit_amount" class="block text-sm font-medium text-gray-300">Deposit Amount</label>
+            <input type="number" name="deposit_amount" id="deposit_amount"
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Balance Amount -->
+          <div>
+            <label for="balance_amount" class="block text-sm font-medium text-gray-300">Balance Amount</label>
+            <input type="number" name="balance_amount" id="balance_amount" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Status -->
+          <div>
+            <label for="status" class="block text-sm font-medium text-gray-300">Status</label>
+            <select name="status" id="status" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="" selected disabled>--Select Status--</option>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Checked">Checked</option>
+            </select>
+          </div>
+
+        </div>
+        <!-- Footer -->
+        <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
+          <button type="button" command="close" commandfor="reservationDialog"
+            class="inline-flex justify-center rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">
+            Cancel
+          </button>
+          <button type="submit"
+            class="inline-flex justify-center rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">
+            Save Reservation
+          </button>
+        </div>
+      </form>
+    </el-dialog-panel>
+  </div>
+</dialog>
+
+
+<dialog id="editReservationDialog" aria-labelledby="reservation-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
+  <el-dialog-backdrop class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
+
+  <div tabindex="0" class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
+    <el-dialog-panel class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-3xl data-closed:sm:translate-y-0 data-closed:sm:scale-95">
+      
+      <!-- Header -->
+      <div class="bg-orange-600 px-6 pt-5 pb-4 border-b border-gray-700">
+        <h3 id="reservation-title" class="text-lg font-semibold text-white">Edit Reservation <span id="reservationId"></span></h3>
+        <p class="text-sm text-white">Fill out the form below to edit reservation.</p>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" id="editReservationForm" action="" class="bg-gray-800 px-6 pt-4 pb-6">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="id" id="editReservationId">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Guest ID -->
+          <div>
+            <label for="editGid" class="block text-sm font-medium text-gray-300">Guest ID</label>
+            <input type="number" name="guest_id" id="editGid" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Guest Name -->
+          <div>
+            <label for="editGname" class="block text-sm font-medium text-gray-300">Guest Name</label>
+            <input type="text" id="editGname" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room ID -->
+          <div>
+            <label for="editRoomId" class="block text-sm font-medium text-gray-300">Room ID</label>
+            <input type="number" name="room_id" id="editRoomId" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Room Number -->
+          <div>
+            <label for="editRoomNumber" class="block text-sm font-medium text-gray-300">Room Number</label>
+            <input type="text"  id="editRoomNumber" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Check In Date -->
+          <div>
+            <label for="editCheck_in_date" class="block text-sm font-medium text-gray-300">Check In Date</label>
+            <input type="datetime-local" name="check_in_date" id="editCheck_in_date" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Check Out Date -->
+          <div>
+            <label for="editCheck_out_date" class="block text-sm font-medium text-gray-300">Check Out Date</label>
+            <input type="datetime-local" name="check_out_date" id="editCheck_out_date" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Total Amount -->
+          <div>
+            <label for="editTotal_amount" class="block text-sm font-medium text-gray-300">Total Amount</label>
+            <input type="number" name="total_amount" id="editTotal_amount" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Deposit Amount -->
+          <div>
+            <label for="editDeposit_amount" class="block text-sm font-medium text-gray-300">Deposit Amount</label>
+            <input type="number" name="deposit_amount" id="editDeposit_amount"
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <!-- Balance Amount -->
+          <div>
+            <label for="editBalance_amount" class="block text-sm font-medium text-gray-300">Balance Amount</label>
+            <input type="number" name="balance_amount" id="editBalance_amount" readonly
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          </div>
+
+          <div>
+            <label for="editStatus" class="block text-sm font-medium text-gray-300">Status</label>
+            <select name="status" id="editStatus" required
+              class="mt-1 block w-full rounded-md bg-gray-700 border border-gray-600 text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="" selected disabled>--Select Status--</option>
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Checked">Checked</option>
+            </select>
+          </div>
+
+        </div>
+        <!-- Footer -->
+        <div class="mt-6 flex justify-end gap-3 border-t border-gray-700 pt-4">
+        <button type="button" onclick="document.getElementById('editReservationDialog').close()"
+            class="inline-flex justify-center rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20">
+            Cancel
+          </button>
+          <button type="submit"
+            class="inline-flex justify-center rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-500">
+            Save Reservation
+          </button>
+        </div>
+      </form>
+    </el-dialog-panel>
+  </div>
+</dialog>
+
+
+
+
+
