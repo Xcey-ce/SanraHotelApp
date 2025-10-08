@@ -1,16 +1,16 @@
 .dataTables_filter {
     margin-bottom: 12px
 }
-#guestTable.dataTable th,
-#guestTable.dataTable td {
-  border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+#guestTable.dataTable, #reservationTable.dataTable th,
+#guestTable.dataTable, #reservationTable.dataTable td {
+  border: 1px solid #e5e7eb;
 }
 
 /* Optional dark mode tweak */
-.dark #guestTable.dataTable th,
-.dark #guestTable.dataTable td {
+.dark #guestTable.dataTable,  .dark #reservationTable.dataTable  th,
+.dark #guestTable.dataTable, .dark #reservationTable.dataTable th {
   border-color: #374151; /* gray-700 */
 }
-#guestTable.dataTable tbody tr:hover {
+#guestTable.dataTable, #reservationTable.dataTable tbody tr:hover {
   background-color: #f3f4f6; /* gray-100 */
 }
