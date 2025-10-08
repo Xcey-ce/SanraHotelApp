@@ -28,8 +28,8 @@ class RoomController extends Controller
             $room->capacity = $request->capacity;
             $room->price = $request->price;
             $room->status = $request->status;
-            $room->description = $request->description;
-            $room->amenities = $request->amenities;
+            $room->description = $request->description ?? ' ';
+            $room->amenities = $request->amenities ?? ' ';
 
             // Handle image upload if exists
             if ($request->hasFile('image_path')) {
@@ -57,10 +57,10 @@ class RoomController extends Controller
         $room->capacity     = $request->capacity;
         $room->price        = $request->price;
         $room->status       = $request->status;
-        $room->description  = $request->description;
-        $room->amenities    = $request->amenities;
+        $room->description  = $request->description ?? '';
+        $room->amenities    = $request->amenities ?? '';
 
-        // ✅ Handle image upload if exists
+
         if ($request->hasFile('image_path')) {
             $image = $request->file('image_path');
             $imageName = time() . '_' . $image->getClientOriginalName();

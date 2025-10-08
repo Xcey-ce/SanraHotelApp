@@ -58,7 +58,7 @@
 <script src="{{ asset('assets/js/jquery.dataTables.min.js')}}?v={{ time() }}"></script>
 <script src="{{ asset('assets/js/guest.js')}}?v={{ time() }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+<script src="{{ asset('asset/js/tailwindplus.js')}}?v={{ time() }}" type="module"></script>
 <script src="{{asset('assets/js/alpine.js')}}?v={{ time() }}" defer></script>
 <script src="{{asset('assets/js/sweetAlert.js')}}?v={{ time() }}"></script>
 @endpush

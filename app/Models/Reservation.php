@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reservations extends Model
+class Reservation extends Model
 {
     use HasFactory;
     protected $tabel = 'reservations';
@@ -40,11 +40,25 @@ class Reservations extends Model
         return in_array($this->status, ['Confirmed', 'Checked In']);
     }
 
-    // Example helper: calculate total stay days
+    // Example helper: calculate total stay days and nights
     public function getStayDurationAttribute()
     {
-        return $this->check_in_date && $this->check_out_date
-            ? \Carbon\Carbon::parse($this->check_in_date)->diffInDays($this->check_out_date)
-            : 0;
+        if ($this->check_in_date && $this->check_out_date) {
+            $checkIn = \Carbon\Carbon::parse($this->check_in_date);
+            $checkOut = \Carbon\Carbon::parse($this->check_out_date);
+
+            $nights = $checkIn->diffInDays($checkOut);
+            $days = $nights > 0 ? $nights + 1 : 1; 
+
+            return [
+                'days' => $days,
+                'nights' => $nights,
+            ];
+        }
+
+        return [
+            'days' => 0,
+            'nights' => 0,
+        ];
     }
 }

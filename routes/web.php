@@ -22,13 +22,13 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/reservation', function () {
-    return view('layouts.reservation');
-})->name('reservation');
 
-Route::get('/login', function () {
-    return view('layouts.login');
-})->name('login');
+Route::get('/reservations', [App\Http\Controllers\ReservationController::class, 'index'])->name('reservation.index');
+Route::get('/get-reservation/data', [App\Http\Controllers\ReservationController::class, 'getReservationData'])->name('reservation.data');
+Route::get('/get-guest/{id}', [App\Http\Controllers\ReservationController::class, 'getGuest']);
+Route::get('/get-room/{id}', [App\Http\Controllers\ReservationController::class, 'getRoom']);
+Route::post('/store/reservation', [App\Http\Controllers\ReservationController::class, 'storeReservation'])->name('store.reservation');
+Route::put('/update/reservation/{id}', [App\Http\Controllers\ReservationController::class, 'updateReservation'])->name('update.reservation');
 
 Route::get('/rooms', [App\Http\Controllers\RoomController::class, 'roomIndex'])->name('rooms.index');
 Route::post('/rooms/store', [App\Http\Controllers\RoomController::class, 'storeRoom'])->name('rooms.store');
